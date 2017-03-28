@@ -5,7 +5,7 @@ My next step with fidling around with ReactJS.
 Page, where the background color changes to a random color every time you click it. It also counts how many times the background has changed. 
 
 ## Motivation
-Decided to just try lots of  
+Decided to just try lots of new things, and while at it learn a little bit of this and that.
 
 ## Todo
 * The counter only changes when it is clicked. It does not count every click. I need to change it so the onClick-event activates no matter where I click.
