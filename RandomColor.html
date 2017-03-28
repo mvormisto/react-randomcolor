@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="author" content="Mika Vormisto">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>React / Random color</title>
+  <!-- React -->
+  <script src="files/react.js"></script>
+  <script src="files/react-dom.js"></script>
+  <script src="files/babel.js"></script>
+  <style type="text/css">
+    p, body, body > * {
+      margin: 0;
+      padding: 0;
+      font-family: Tahoma;
+    }
+    body {
+      height: 100vh;
+      width: 100vw;
+    }
+    #react-root {
+      width: 100%;
+      height: 100%;
+    }
+    #react-container {
+      width: 100%;
+      height: 100%;
+    }
+
+    #react-square {
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+    }
+    #react-square > p:first-child {
+      font-size: 12px;
+    }
+    #react-square > p:nth-child(2) {
+      font-size: 40px;
+      text-transform: uppercase;
+      margin-bottom: 100px;
+      letter-spacing: 3px;
+    }
+    #react-clickcounter {
+      font-size: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div id="react-root">
+    <!-- React content will be inserted here -->
+  </div>
+
+  <script type="text/babel">
+
+    function GetRandomRGB() {
+      return '#' + (0x1000000 + Math.random() * 0xFFFFFF).toString(16).substr(1,6);
+    };
+
+    var MySquare = React.createClass({
+
+      test() {
+        console.log("asdf")
+      },
+
+      getInitialState: function() {
+        return {
+          bgColor: GetRandomRGB()
+        }
+      },
+
+      handleClick: function() {
+        this.setState({
+          bgColor: GetRandomRGB()
+        })
+      },
+
+      render: function() {
+        return (
+          <div id="react-square" onClick={this.handleClick} style={ { backgroundColor:this.state.bgColor } }>
+            <p>The current background color is</p>
+            <p>{this.state.bgColor}</p>
+            {this.props.children}
+          </div>
+        );
+      }
+    });
+
+    var ClickCounter = React.createClass({
+
+      getInitialState: function() {
+        return {
+          clickCount: 0
+        }
+      },
+
+      someThingElse: function() {
+        this.setState({
+          clickCount: this.state.clickCount + 1
+        })
+      },
+
+      countMessage() {
+        if (this.state.clickCount == 0) {
+          return 'Background color has not yet been changed. Click anywhere to change.'
+        } else if (this.state.clickCount > 0 && this.state.clickCount < 10) {
+          return "Background color has been changed " + this.state.clickCount + " times."
+        } else if (this.state.clickCount > 9 ) {
+          return "Not bored yet?"
+        }
+      },
+
+      render: function() {
+        return (
+          <div id="react-clickcounter" onClick={this.someThingElse}>
+            <p>{this.countMessage()}</p>
+          </div>
+        );
+      }
+    });
+
+    ReactDOM.render(
+      <div id="react-container">
+        <MySquare>
+          <ClickCounter />
+        </MySquare>
+      </div>
+      , document.getElementById('react-root'));
+
+  </script>
+  
+</body>
+</html>
