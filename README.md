@@ -2,7 +2,10 @@
 My next step with fidling around with ReactJS.
 
 ## Synopsis
-Page, where the background color changes to a random color every time you click it. It also counts how many times the background has changed. 
+Page, where the background color changes to a random color every time you click it. It also counts how many times the background has changed.
+
+## Demonstration
+You can try it out by [clicking here](https://mvormisto.github.io/react-randomcolor/RandomColor.html). 
 
 ## Motivation
 Decided to just try lots of new things, and while at it learn a little bit of this and that.
